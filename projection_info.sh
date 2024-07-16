@@ -2,6 +2,7 @@
 
 # The WKT string for this projection is:
 # +proj=stere +lat_0=90 +lon_0=-45 +k=0.9996 +x_0=1106820.27582 +y_0=3620245.99735 +a=6378137 +rf=298.257220143428 +units=m +no_defs +type=crs
+wkt_string="+proj=stere +lat_0=90 +lon_0=-45 +k=0.9996 +x_0=1106820.27582 +y_0=3620245.99735 +a=6378137 +rf=298.257220143428 +units=m +no_defs +type=crs"
 
 # I am using a polar stereographic projection, which has been used in many Greenland related things.
 center_longitude=-45

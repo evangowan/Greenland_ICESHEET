@@ -10,10 +10,10 @@ Dependencies:
 To run this using the default settings (i.e. using the given projection):
 
 - FORTRAN compiler (the Intel compiler ifort is prefered)
-- Generic Mapping Tools (version >= 6.3)
+- Generic Mapping Tools (version >= 6.4)
 
 
-If the projection is changed:
+If the projection or shear stress files are changed:
 
 - ogr2ogr (this is likely required by Generic Mapping Tools anyways)
 
@@ -27,4 +27,4 @@ topo/ - The script will create the topography grid file needed for ICESHEET. The
 
 ice_margins/ - This contains the ice sheet margins for the maximal scneario Last Glacial Maximum (LGM) from Leger et al (2024) and the present day margin taken from Bedmachine version 5 from Morlighem, M. et al (2022 - https://doi.org/10.5067/GMEVBWFLWA7X).
 
-shear_stress/ - The shear stress shapefile is already projected to what is in projection_info.sh to make editing easier.
+shear_stress/ - The shear stress shapefile is already projected to what is in projection_info.sh to make editing easier. The script will take the values of the shear stress from the shapefile and make the grid file used by ICESHEET. The default shear stress values are tuned to fit the modern Greenland Ice Sheet, as described in Gowan et al (2021).

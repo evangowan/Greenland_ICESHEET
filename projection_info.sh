@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# The WKT string for this projection is:
+# +proj=stere +lat_0=90 +lon_0=-45 +k=0.9996 +x_0=1106820.27582 +y_0=3620245.99735 +a=6378137 +rf=298.257220143428 +units=m +no_defs +type=crs
+
 # I am using a polar stereographic projection, which has been used in many Greenland related things.
 center_longitude=-45
 center_latitude=90
@@ -42,6 +45,12 @@ gmt mapproject << END    ${R_options} ${J_options} -F  > corners.txt
 ${west_longitude} ${west_latitude}
 ${east_longitude} ${east_latitude}
 END
+
+# I needed this to calculate the offset from center, since the zero point is not at the center but rather at the bottom left corner
+#gmt mapproject << END    ${R_options} ${J_options} -F -C > corners_C.txt
+#${west_longitude} ${west_latitude}
+#${east_longitude} ${east_latitude}
+#END
 
 
 

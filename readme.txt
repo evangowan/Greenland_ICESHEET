@@ -19,7 +19,11 @@ If the projection or shear stress files are changed:
 
 -----------------
 
-run_icesheet.sh - This is the script to run ICESHEET and create the calculated ice thickness. There are variables in this script that you can edit to change the ice margin, topography and shear stress files, as well as the settings for ICESHEET.
+settings.sh - This contains the variables that you can edit to change the ice margin, topography and shear stress files, as well as the settings for ICESHEET.
+
+projection_info.sh - This contains the projection information that is shared with all of the scripts.
+
+run_icesheet.sh - This is the script to run ICESHEET and create the calculated ice thickness. 
 
 code/ - this contains the code for ICESHEET. It must be compiled before using any of the scripts. Right now it is set up to run using the Intel fortran compiler "ifort", which is strongly recommended. Just type "make icesheet" to compile. If you want to use gfortran, you must comment out the compilation flags in the makefile. The gfortran compiled version of icesheet will run slower.
 

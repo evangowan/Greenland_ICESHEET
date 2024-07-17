@@ -4,52 +4,7 @@
 icesheet_path=$(pwd)/code
 PATH=${PATH}:${icesheet_path}
 
-
-######################################################
-# choose the margin you want to use
-######################################################
-
-margin_folder=ice_margins
-
-# Modern margin
-margin=modern.gmt
-
-# Last Glacial Maximum margin
-margin=LGM.gmt
-
-
-######################################################
-# Topography parameters
-######################################################
-
-topo_folder=topo
-
-# Modern topography for Greenland
-topo=Greenland.bin
-topo_param=elev_parameters.txt
-
-
-######################################################
-# Basal Shear Stress parameters
-######################################################
-
-shear_stress_folder=shear_stress
-
-# Shear stress from Gowan et al 2021
-shear_stress=shear_stress.bin
-shear_stress_param=ss_parameters.txt
-
-######################################################
-# Settings for ice sheet
-######################################################
-
-# In meters, minimum distance between flowlines in ICESHEET calculation.
-# Recommended to be at maximum the grid spacing (which is 5 km in the example here)
-icesheet_spacing=5000
-
-# In m, the elevation contour interval used in ICESHEET
-icesheet_interval=20
-
+source settings.sh
 
 # Split the margin into individual polygons for ICESHEET
 # make temp folder
@@ -138,6 +93,6 @@ gmt blockmedian ${thickness_dump_file} ${R_cart} -I${spacing}=   -C  > reconstru
 gmt surface reconstruction_thickness.txt -Gice_thickness_raw.nc -I${spacing} ${R_cart} -T0.25  
 
 # masks out spurious output from the surface program
-gmt grdmath ice_thickness_raw.nc mask.nc MUL = ice_thickness.nc
+gmt grdmath ice_thickness_raw.nc mask.nc MUL = ${calc_ice_thickness}
 
 

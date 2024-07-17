@@ -22,7 +22,7 @@ area_grid=${region}.nc
 
 
 # projects the topography grid to the desired resolution
-gmt grdproject ${topo}  ${R_options} ${J_options} -G${area_grid} -D${resolution}000+e -Fe  -r 
+gmt grdproject ${topo}  ${R_options} ${J_options} -G${area_grid} -D${resolution}000+e -Fe  -r -V
 
 
 

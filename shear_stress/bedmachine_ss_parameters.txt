@@ -1,0 +1,6 @@
+bedmachine_shear_stress.bin
+0
+2255000
+0
+3180000
+5000

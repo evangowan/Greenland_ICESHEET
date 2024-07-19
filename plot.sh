@@ -46,7 +46,7 @@ gmt end
 
 # Find sea level equivalent ice volume
 	gmt grdmath ${calc_ice_thickness} 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
-	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.91 / 361 / 1e6 * 1000}' > volume.txt
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
 0 0
 END
 
@@ -103,7 +103,7 @@ gmt end
 
 # Find sea level equivalent ice volume
 	gmt grdmath ${topo_folder}/${bedmachine_thickness} 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
-	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.91 / 361 / 1e6 * 1000}' > volume.txt
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
 0 0
 END
 
@@ -161,7 +161,7 @@ gmt grdmath ${calc_ice_thickness} ${topo_folder}/${bedmachine_thickness} SUB ABS
 
 
 	gmt grdmath thickness_diff.nc 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
-	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.91 / 361 / 1e6 * 1000}' > volume.txt
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
 0 0
 END
 

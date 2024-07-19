@@ -39,7 +39,7 @@ gmt grdmath ${ice_surface} ${ice_mask} MUL = ${ice_surface_masked}
 
 # Find sea level equivalent ice volume
 	gmt grdmath ${area_grid} 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
-	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.91 / 361 / 1e6 * 1000}' > volume.txt
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
 0 0
 END
 
@@ -49,7 +49,7 @@ SLE=$(awk '{printf "%5.2f", $3}' volume.txt)
 
 shear_stress=bedmachine_shear_stress.nc
 
-gmt grdmath ${ice_surface_masked} DDX SQR ${ice_surface_masked} DDY SQR ADD SQRT ${area_grid} MUL 910 MUL 9.8066 MUL = temp.nc
+gmt grdmath ${ice_surface_masked} DDX SQR ${ice_surface_masked} DDY SQR ADD SQRT ${area_grid} MUL 917 MUL 9.8066 MUL = temp.nc
 gmt grdmath temp.nc 5000 GT temp.nc MUL temp.nc 5000 LE 5000 MUL ADD = ${shear_stress}
 
 

@@ -185,4 +185,28 @@ END_CAT
 
 gmt end
 
+# Plot ice surface
 
+
+# Plot surface topography
+
+ice_surface=ice_surface.nc
+ice_surface_masked=ice_surface_masked.nc
+
+gmt grdmath ${topo_folder}/${topo_netcdf} ${calc_ice_thickness} ADD = ${ice_surface}
+gmt grdmath ${calc_ice_thickness} 0 GT 0 NAN ${ice_surface} MUL = ice_surface_masked.nc
+
+gmt makecpt -Cglobe -T-5000/5000 > shades.cpt
+gmt makecpt -CSCM/roma -T-4000/4000  > mask_shades.cpt
+
+gmt begin ${plot_folder}/surface_elevation pdf
+
+  gmt grdimage ${ice_surface}   -Cshades.cpt -Q   ${J_cart} ${R_cart}
+  gmt grdimage ${ice_surface_masked}   -Cmask_shades.cpt -Q   ${J_cart} ${R_cart}
+  gmt plot coastline/coastline.shp ${R_options} ${J_options}  -Wthin -BneWS
+  gmt basemap  ${R_options} ${J_options} -Ln0.8/0.04+w500+c-43/73+f+l+ar -F+gwhite+p2p,black
+  gmt colorbar -DJBC+w7c/0.5c+h+   -Bxa2500f500+l"Elevation (m)"  -Cshades.cpt
+
+  gmt colorbar -DJBC+w7c/0.5c+h+ -Y-2  -Bxa1000f500+l"Ice Surface Elevation (m)" -G0/4000 -Cmask_shades.cpt
+
+gmt end

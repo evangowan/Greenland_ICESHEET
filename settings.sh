@@ -26,6 +26,9 @@ topo=Greenland.bin
 topo_netcdf=Greenland.nc
 topo_param=elev_parameters.txt
 
+#Bedmachine ice thickness
+
+bedmachine_thickness=bedmachine_ice_thickness.nc
 
 ######################################################
 # Basal Shear Stress parameters
@@ -37,9 +40,13 @@ shear_stress_folder=shear_stress
 shear_stress=shear_stress.bin
 shear_stress_netcdf=shear_stress.nc
 shear_stress_param=ss_parameters.txt
+domain_file=shear_stress_domains.shp 
 
-# blank out this variable if you are not using domain polygons
-domain_file=shear_stress_domains.shp
+# bedmachine derived shear stress
+#shear_stress=bedmachine_shear_stress.bin
+#shear_stress_netcdf=bedmachine_shear_stress.nc
+#shear_stress_param=bedmachine_ss_parameters.txt
+#domain_file=""
 
 ######################################################
 # Settings for ICESHEET

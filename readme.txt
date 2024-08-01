@@ -47,7 +47,7 @@ topo/ - The script will create the topography grid file needed for ICESHEET. The
 
 shear_stress/ - The shear stress shapefile is already projected to what is in projection_info.sh to make editing easier. This will obviously need to be reprojected should the projection be changed. The script "create_shear_stress.sh" will take the values of the shear stress from the shapefile and make the grid file used by ICESHEET. The default shear stress values are tuned to fit the modern Greenland Ice Sheet, as described in Gowan et al (2021). It will also create a file with the shear stress values calculated from Bedmachine (see the topo folder), and use the shapefile to fill in any gaps.
 
-ice_margins/ - This contains the ice sheet margins for the maximal scneario Last Glacial Maximum (LGM) from Leger et al (2024) and the present day margin taken from Bedmachine version 5.
+ice_margins/ - This contains the ice sheet margins for the maximal scneario Last Glacial Maximum (LGM) from Leger et al (2024) and the present day margin taken from Bedmachine version 5. I have also included a QGIS setup to allow the user to modify the modern ice sheet margin (ice_margins.qgz; modern_mod.shp). To make it easier, it includes the base topography from Bedmachine as well as the 2017/2018 MEaSUREs velocity. If the margin is modified, the script "convert.sh" needs to be run to convert it to the GMT format.
 
 -----------------
 
@@ -57,3 +57,5 @@ Bedmachine version 5 - Morlighem, M. et al (2022): https://doi.org/10.5067/GMEVB
 ICESHEET - Gowan et al (2016): https://doi.org/10.5194/gmd-9-1673-2016
 Shear stress values from Gowan et al (2021): https://doi.org/10.1038/s41467-021-21469-w
 Some info on the modelled Greenland ice sheet from Gowan (2023): https://doi.org/10.34194/geusb.v53.8355
+Ice sheet velocity - Joughin, I., Smith, B., Howat, I. & Scambos, T. MEaSUREs Greenland Ice Sheet Velocity Map from InSAR Data, Version 2. 2015, Distributed by NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/OC7B04ZM9G6Q. Date Accessed 07-31-2024.
+

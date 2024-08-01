@@ -10,6 +10,10 @@ margin_folder=ice_margins
 margin=modern.gmt
 margin_shp=modern.shp
 
+# Modified modern margin
+margin=modern_mod.gmt
+margin_shp=modern_mod.shp
+
 # Last Glacial Maximum margin
 #margin=LGM.gmt
 #margin_shp=LGM.shp

@@ -7,16 +7,17 @@
 margin_folder=ice_margins
 
 # Modern margin
-margin=modern.gmt
-margin_shp=modern.shp
+scenario=modern
 
 # Modified modern margin
-margin=modern_mod.gmt
-margin_shp=modern_mod.shp
+#scenario=modern_mod
 
 # Last Glacial Maximum margin
-#margin=LGM.gmt
-#margin_shp=LGM.shp
+scenario=LGM
+
+margin=${scenario}.gmt
+margin_shp=${scenario}.shp
+
 
 
 ######################################################

@@ -96,3 +96,9 @@ gmt surface reconstruction_thickness.txt -Gice_thickness_raw.nc -I${spacing} ${R
 gmt grdmath ice_thickness_raw.nc mask.nc MUL = ${calc_ice_thickness}
 
 
+# copy the scenario to ice_thickness folder
+
+mkdir -p ice_thickness
+cp ${calc_ice_thickness} ice_thickness/${scenario}.nc
+
+

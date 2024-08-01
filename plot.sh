@@ -210,3 +210,78 @@ gmt begin ${plot_folder}/surface_elevation pdf
   gmt colorbar -DJBC+w7c/0.5c+h+ -Y-2  -Bxa1000f500+l"Ice Surface Elevation (m)" -G0/4000 -Cmask_shades.cpt
 
 gmt end
+
+
+
+
+
+# Difference between modern and LGM, if both exist
+
+if [ -e "ice_thickness/modern.nc" ] && [ -e "ice_thickness/LGM.nc" ]
+then
+gmt grdmath  ice_thickness/LGM.nc ice_thickness/modern.nc SUB  = thickness_diff.nc
+
+
+
+	gmt grdmath thickness_diff.nc 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
+0 0
+END
+
+SLE_diff=$(awk '{printf "%5.2f", $3}' volume.txt)
+
+gmt makecpt -Cmatlab/polar -T-1125/1125/250 -D > shades.cpt
+
+
+gmt begin ${plot_folder}/LGM-Modern pdf
+
+  gmt grdimage thickness_diff.nc   -Cshades.cpt -Q   ${J_cart} ${R_cart}
+  gmt plot coastline/coastline.shp ${R_options} ${J_options}  -Wthin -BneWS
+
+  gmt text << END_CAT ${J_cart} ${R_cart} -Gwhite -F+f12p+cBL -D0.15/0.15
+Diff Vol: ${SLE_diff} m SLE
+END_CAT
+
+
+  gmt basemap  ${R_options} ${J_options} -Ln0.8/0.04+w500+c-43/73+f+l+ar -F+gwhite+p2p,black
+  gmt colorbar -DJBC+w8c/0.5c+h+e   -Bxa250f125+l"LGM - Modern (modelled) (m)"  -Cshades.cpt
+
+gmt end
+
+fi
+
+
+# Difference between modern and modern_mod, if both exist
+
+if [ -e "ice_thickness/modern.nc" ] && [ -e "ice_thickness/modern_mod.nc" ]
+then
+gmt grdmath  ice_thickness/modern.nc ice_thickness/modern_mod.nc SUB  = thickness_diff.nc
+
+
+
+	gmt grdmath thickness_diff.nc 1000 DIV ${resolution} MUL ${resolution} MUL SUM  = volume_sum.nc
+	gmt grdtrack -Gvolume_sum.nc << END  | awk -v resolution=${resolution} '{print $3, $3  / 1e6, $3 * 0.917 / 361 / 1e6 * 1000}' > volume.txt
+0 0
+END
+
+SLE_diff=$(awk '{printf "%5.2f", $3}' volume.txt)
+
+gmt makecpt -Cmatlab/polar -T-1125/1125/250 -D > shades.cpt
+
+
+gmt begin ${plot_folder}/Modern-Modern_mod pdf
+
+  gmt grdimage thickness_diff.nc   -Cshades.cpt -Q   ${J_cart} ${R_cart}
+  gmt plot coastline/coastline.shp ${R_options} ${J_options}  -Wthin -BneWS
+
+  gmt text << END_CAT ${J_cart} ${R_cart} -Gwhite -F+f12p+cBL -D0.15/0.15
+Diff Vol: ${SLE_diff} m SLE
+END_CAT
+
+
+  gmt basemap  ${R_options} ${J_options} -Ln0.8/0.04+w500+c-43/73+f+l+ar -F+gwhite+p2p,black
+  gmt colorbar -DJBC+w8c/0.5c+h+e   -Bxa250f125+l"Modern - Modern_mod (modelled) (m)"  -Cshades.cpt
+
+gmt end
+
+fi
